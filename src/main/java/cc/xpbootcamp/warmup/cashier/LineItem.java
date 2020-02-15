@@ -1,8 +1,9 @@
 package cc.xpbootcamp.warmup.cashier;
 
 public class LineItem {
-	static char TAB = '\t';
-	static char NEWLINE = '\n';
+	public static final char TAB = '\t';
+	public static final char NEWLINE = '\n';
+	public static final double RATE = .10;
 
 	private String desc;
 	private double price;
@@ -31,15 +32,23 @@ public class LineItem {
         return price * qty;
     }
 
+    double salesTax() {
+		return totalAmount() * RATE;
+	}
+
+	double total() {
+		return totalAmount() + salesTax();
+	}
+
 	StringBuilder print() {
 		StringBuilder output = new StringBuilder();
-		output.append(this.getDescription());
+		output.append(getDescription());
 		output.append(TAB);
-		output.append(this.getPrice());
+		output.append(getPrice());
 		output.append(TAB);
-		output.append(this.getQuantity());
+		output.append(getQuantity());
 		output.append(TAB);
-		output.append(this.totalAmount());
+		output.append(totalAmount());
 		output.append(NEWLINE);
 		return output;
 	}
