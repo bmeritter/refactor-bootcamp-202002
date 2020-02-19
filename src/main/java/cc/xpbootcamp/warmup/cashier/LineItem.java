@@ -1,8 +1,6 @@
 package cc.xpbootcamp.warmup.cashier;
 
 public class LineItem {
-	public static final char TAB = '\t';
-	public static final char NEWLINE = '\n';
 	public static final double RATE = .10;
 
 	private String desc;
@@ -43,13 +41,13 @@ public class LineItem {
 	StringBuilder print() {
 		StringBuilder output = new StringBuilder();
 		output.append(getDescription());
-		output.append(TAB);
-		output.append(getPrice());
-		output.append(TAB);
+		output.append('，');
+		output.append(Util.formatPrice(getPrice()));
+		output.append(" x ");
 		output.append(getQuantity());
-		output.append(TAB);
-		output.append(totalAmount());
-		output.append(NEWLINE);
+		output.append('，');
+		output.append(Util.formatPrice(totalAmount()));
+		output.append('\n');
 		return output;
 	}
 }
