@@ -28,11 +28,11 @@ class OrderReceiptTest {
     public void shouldPrintLineItemAndSalesTaxInformationWithoutDiscount() throws ParseException {
         Date orderDate = new SimpleDateFormat("yyyy-MM-dd").parse("2020-02-18");
 
-        List<LineItem> lineItems = new ArrayList<LineItem>() {{
+        List<LineItem> goods = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.00, 1));
         }};
-        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems, orderDate));
+        OrderReceipt receipt = new OrderReceipt(new Order(null, null, goods, orderDate));
 
         String output = receipt.printReceipt();
 
@@ -46,13 +46,13 @@ class OrderReceiptTest {
 
     @Test
     public void shouldPrintLineItemAndSalesTaxInformationWithDiscount() throws ParseException {
-        Date orderDate = new SimpleDateFormat("yyyy-MM-dd").parse("2020-02-19");
+        Date createdAt = new SimpleDateFormat("yyyy-MM-dd").parse("2020-02-19");
 
-        List<LineItem> lineItems = new ArrayList<LineItem>() {{
+        List<LineItem> goods = new ArrayList<LineItem>() {{
             add(new LineItem("巧克力", 21.5, 2));
             add(new LineItem("小白菜", 10.00, 1));
         }};
-        OrderReceipt receipt = new OrderReceipt(new Order(null, null, lineItems, orderDate));
+        OrderReceipt receipt = new OrderReceipt(new Order(null, null, goods, createdAt));
 
         String output = receipt.printReceipt();
 

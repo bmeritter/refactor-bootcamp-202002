@@ -15,7 +15,7 @@ public class Util {
         return dateFormat.format(date);
     }
 
-    public static int getCurrentWeek(Date date) {
+    public static int getDayOfCurrentWeek(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.DAY_OF_WEEK);

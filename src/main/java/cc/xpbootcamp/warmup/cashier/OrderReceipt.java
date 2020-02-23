@@ -10,7 +10,7 @@ public class OrderReceipt {
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
 
-        output.append(printHeaders());
+        output.append(printHeader());
 
         output.append(order.print());
 
@@ -31,10 +31,10 @@ public class OrderReceipt {
         return output.toString();
     }
 
-    private String printHeaders() {
+    private String printHeader() {
         StringBuilder output = new StringBuilder();
         output.append("===== 老王超市,值得信赖 ======\n");
-        output.append(Util.formatDate(order.getDate()));
+        output.append(Util.formatDate(order.getCreatedAt()));
         return output.toString();
     }
 

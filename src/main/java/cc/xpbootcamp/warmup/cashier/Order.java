@@ -7,37 +7,29 @@ import java.util.List;
 public class Order {
     private static final int DISCOUNT_DATE = Calendar.WEDNESDAY;
     public static final double DISCOUNT_RATE = .98;
-    String cName;
-    String addr;
-    List<LineItem> lineItemList;
-    private Date date;
+    String customName;
+    String address;
+    List<LineItem> goods;
+    private Date createdAt;
 
-    public Order(String cName, String addr, List<LineItem> lineItemList, Date date) {
-        this.cName = cName;
-        this.addr = addr;
-        this.lineItemList = lineItemList;
-        this.date = date;
-    }
-
-    public String getCustomerName() {
-        return cName;
-    }
-
-    public String getCustomerAddress() {
-        return addr;
+    public Order(String cName, String addr, List<LineItem> goods, Date createdAt) {
+        this.customName = cName;
+        this.address = addr;
+        this.goods = goods;
+        this.createdAt = createdAt;
     }
 
     public List<LineItem> getLineItems() {
-        return lineItemList;
+        return goods;
     }
 
     double total() {
-        double tot = 0d;
+        double total = 0d;
 
         for (LineItem lineItem : getLineItems()) {
-            tot += lineItem.total();
+            total += lineItem.total();
         }
-        return tot;
+        return total;
     }
 
     double totalSalesTax() {
@@ -50,7 +42,7 @@ public class Order {
     }
 
     double discount() {
-        return DISCOUNT_DATE == Util.getCurrentWeek(date) ? total() * (1 - DISCOUNT_RATE) : 0;
+        return DISCOUNT_DATE == Util.getDayOfCurrentWeek(createdAt) ? total() * (1 - DISCOUNT_RATE) : 0;
     }
 
     StringBuilder print() {
@@ -61,7 +53,7 @@ public class Order {
         return output;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 }
